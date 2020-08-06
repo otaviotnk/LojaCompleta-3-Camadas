@@ -34,7 +34,8 @@ namespace AppMVC.App.Controllers
 
 
         // GET: Fornecedores
-        [AllowAnonymous]
+        [ClaimsAuthorize("Fornecedor","")]
+
         [Route("lista-de-fornecedores")]
         public async Task<IActionResult> Index()
         {
@@ -138,6 +139,9 @@ namespace AppMVC.App.Controllers
                 //Para retornar todas as informacoes novamente 
                 return View(await ObterFornecedorProdutosEndereco(id));
             }
+
+            TempData["Editado"] = "Fornecedor editado com sucesso!";
+
             return RedirectToAction("Index");
 
             

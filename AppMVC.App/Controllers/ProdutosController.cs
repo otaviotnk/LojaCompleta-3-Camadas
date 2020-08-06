@@ -165,6 +165,8 @@ namespace AppMVC.App.Controllers
                     return View(produtoViewModel);
                 }
 
+                TempData["Editado"] = "Produto editado com sucesso!";
+
                 return RedirectToAction(nameof(Index));
             }
             
