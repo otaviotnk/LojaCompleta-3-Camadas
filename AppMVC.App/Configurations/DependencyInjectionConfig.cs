@@ -7,7 +7,7 @@ using AppMVC.Data.Repository;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;
 
-//INJEÇÃO DE DEPENDENCIAS PARA DIMINUIR O TAMANHO E ORGANIZAR MELHOR A STARTUP.CS
+//Injeção de Dependencias para diminuir a quantidade de código na Startup.cs
 
 namespace AppMVC.App.Configurations
 {
@@ -16,17 +16,20 @@ namespace AppMVC.App.Configurations
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<MeuDbContext>();
-            //ADD A INTERFACE, PARA O REPOSITORIO
+
+            //Add as Interfaces para os Repositorios            
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
 
             services.AddSingleton<IValidationAttributeAdapterProvider, MoedaValidationAttributeAdapterProvider>();
 
-            //ADD A INTERFACE PARA O SERVICE
+            //Add as Interfaces para os Services            
             services.AddScoped<INotificador, Notificador>();
             services.AddScoped<IFornecedorService, FornecedorService>();
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IClienteService, ClienteService>();
 
             return services;
         }

@@ -22,7 +22,7 @@ namespace AppMVC.Business.Services
 
         public async Task Adicionar(Fornecedor fornecedor)
         {
-            //VERIFICA SE NÃO EXISTE O FORNECEDOR
+            //Verifica se não existe o fornecedor
             if (!ExecutarValidacao(new FornecedorValidation(), fornecedor) 
                 || !ExecutarValidacao(new EnderecoValidation(), fornecedor.Endereco)) return;
 

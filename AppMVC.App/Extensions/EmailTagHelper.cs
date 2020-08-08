@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-//TAG HELPER PERSONALIZADA PARA EMAIL
+//Tag Helper para personalizar dimínio de e-mail
 
 namespace AppMVC.App.Extensions
 {

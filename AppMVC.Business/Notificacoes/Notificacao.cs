@@ -1,6 +1,6 @@
 ﻿namespace AppMVC.Business.Notificacoes
 {
-    //A NOTIFICACAO RECEBE UMA MENSAGEM
+    //A notificação recebe uma mensagem aqui
     public class Notificacao
     {
         public Notificacao(string mensagem)

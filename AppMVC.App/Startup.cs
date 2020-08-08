@@ -1,5 +1,4 @@
 using AppMVC.App.Configurations;
-using AppMVC.App.Data;
 using AppMVC.Data.Context;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -9,12 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-
 namespace AppMVC.App
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
+
+        //Definindo os ambientes
         public Startup(IHostEnvironment hostEnvironment)
         {
             var builder = new ConfigurationBuilder()
@@ -31,9 +31,7 @@ namespace AppMVC.App
             Configuration = builder.Build();
         }
 
-        
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // Este método é chamado em tempo de execução. Use este método para adicionar serviços ao contêiner.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityConfiguration(Configuration);
@@ -52,11 +50,10 @@ namespace AppMVC.App
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
-            services.AddRazorPages();           
-
+            services.AddRazorPages();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // Este método é chamado em tempo de execução. Use este método para configurar o pipeline de solicitação HTTP.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -69,7 +66,7 @@ namespace AppMVC.App
                 app.UseExceptionHandler("/Home/Error");
                 app.UseStatusCodePagesWithRedirects("/erro/{0}");
 
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // O valor padrão de HSTS é 30 dias. Você pode querer mudar isso para cenários de produção.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -79,10 +76,9 @@ namespace AppMVC.App
 
             app.UseAuthentication();
             app.UseAuthorization();
-    
+
             //Classe criada para limpar a startup
             app.UseGlobalizationConfig();
-
 
             app.UseEndpoints(endpoints =>
             {

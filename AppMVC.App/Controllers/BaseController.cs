@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Intefaces;
 using Microsoft.AspNetCore.Mvc;
 
 //Controler que serve como base para as demais controllers do projeto

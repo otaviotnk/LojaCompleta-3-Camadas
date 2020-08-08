@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200806033149_RegisterUserName.cs" />
+    <Compile Remove="Migrations\20200806033149_RegisterUserName.Designer.cs" />
+    <Compile Remove="Migrations\20200806034136_RegisterUserName.v2.cs" />
+    <Compile Remove="Migrations\20200806034136_RegisterUserName.v2.Designer.cs" />
+    <Compile Remove="Migrations\20200806055351_LoginChanges.v3.cs" />
+    <Compile Remove="Migrations\20200806055351_LoginChanges.v3.Designer.cs" />
+    <Compile Remove="Migrations\20200806212324_ClienteModel.cs" />
+    <Compile Remove="Migrations\20200806212324_ClienteModel.Designer.cs" />
+    <Compile Remove="Migrations\20200807182633_ClienteTests.v4.cs" />
+    <Compile Remove="Migrations\20200807182633_ClienteTests.v4.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
       <PrivateAssets>all</PrivateAssets>

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-//AQUI FICAM OS MAPEAMENTOS DO BANCO DE DADOS, PODE SER SUBISTITUIDO PELOS ANNOTATIONS NAS MODELS
+//Mapeamentos do Banco de Dados, pode ser substituido peloas DataAnnotations nas Models ou ViewModels
 
 namespace DevIO.Data.Mappings
 {

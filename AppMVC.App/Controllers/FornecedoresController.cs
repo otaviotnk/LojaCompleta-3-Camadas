@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AppMVC.App.Data;
+﻿using AppMVC.App.Extensions;
 using AppMVC.App.ViewModels;
 using AppMVC.Business.Intefaces;
+using AppMVC.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using AppMVC.App.Extensions;
-using AppMVC.Business.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AppMVC.App.Controllers
 {
@@ -23,15 +19,14 @@ namespace AppMVC.App.Controllers
         private readonly IMapper _mapper;
 
         public FornecedoresController(IFornecedorRepository fornecedorRepository,
-            IFornecedorService fornecedorService,
-            IMapper mapper,
-            INotificador notificador) : base(notificador)
+                                        IFornecedorService fornecedorService,
+                                        IMapper mapper,
+                                        INotificador notificador) : base(notificador)
         {
             _fornecedorRepository = fornecedorRepository;
             _fornecedorService = fornecedorService;
             _mapper = mapper;
         }
-
 
         // GET: Fornecedores
         [ClaimsAuthorize("Fornecedor","")]
@@ -56,8 +51,6 @@ namespace AppMVC.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        //DAQUI PRA BAIXO NAO FIZ
-
         // GET: Fornecedores/Create
         //ClaimsAuthorize vem da classe de extensão
         [ClaimsAuthorize("Fornecedor", "Adicionar")]
@@ -67,9 +60,7 @@ namespace AppMVC.App.Controllers
             return View();
         }
 
-        // POST: Fornecedores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Fornecedores/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ClaimsAuthorize("Fornecedor", "Adicionar")]
@@ -82,6 +73,10 @@ namespace AppMVC.App.Controllers
             }
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
+
+            //Seta a data de cadastro do fornecedor como a data atual
+            fornecedor.DataCadastro = DateTime.Now;           
+            
             await _fornecedorService.Adicionar(fornecedor);
 
             if (!OperacaoValida())
@@ -91,9 +86,7 @@ namespace AppMVC.App.Controllers
 
             TempData["Sucesso"] = "Fornecedor adicionado com sucesso!";
 
-            return RedirectToAction("Index");
-
-            
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Fornecedores/Edit/5
@@ -111,9 +104,7 @@ namespace AppMVC.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        // POST: Fornecedores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Fornecedores/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ClaimsAuthorize("Fornecedor", "Editar")]
@@ -142,9 +133,7 @@ namespace AppMVC.App.Controllers
 
             TempData["Editado"] = "Fornecedor editado com sucesso!";
 
-            return RedirectToAction("Index");
-
-            
+            return RedirectToAction(nameof(Index));            
         }
 
         // GET: Fornecedores/Delete/5
@@ -185,8 +174,7 @@ namespace AppMVC.App.Controllers
 
             TempData["Sucesso"] = "Fornecedor removido com sucesso";
 
-            return RedirectToAction("Index");
-
+            return RedirectToAction(nameof(Index));
         }
 
         [AllowAnonymous]
@@ -199,7 +187,7 @@ namespace AppMVC.App.Controllers
             {
                 return NotFound();
             }
-            //Dá para trocar por um nameof?
+            
             return PartialView("_DetalhesEndereco", fornecedor);
         }
 
@@ -245,12 +233,10 @@ namespace AppMVC.App.Controllers
             return PartialView("_AtualizarEndereco", fornecedorViewModel);
         }
 
-
         private async Task<FornecedorViewModel> ObterFornecedorEndereco(Guid id)
         {
             return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(id));
         }
-
 
         private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
         {

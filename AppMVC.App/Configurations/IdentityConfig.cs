@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-//COMFIGURAÇÕES DO IDENTITY, TIRADAS DA STARTUP.CS
+
+//Configurações do Identity, Tiradas da Startup.cs para diminuir a quantidade de cógido
+
 
 namespace AppMVC.App.Configurations
 {

@@ -3,7 +3,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 
-//GLOBALIZACAO PARA TRAZER OS MODELOS DE MOEDA E ALERTAS PADRÃO PARA PT-BR
+//Globalização para trazer os modelos de moeda e alertas padrões para pt-BR
 
 namespace AppMVC.App.Configurations
 {

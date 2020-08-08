@@ -9,7 +9,7 @@ namespace AppMVC.App.Extensions
 {
     public class CustomAuthorization
     {
-        //VERIFICA SE O USUARIO ESTÁ AUTENTICADO E SE TEM AS CLAINS NECESSÁRIAS
+        //Verifica se o usuário está autenticado e se tem as Claims necessárias
         public static bool ValidarClaimsUsuario(HttpContext context, string claimName, string claimValue)
         {
             return context.User.Identity.IsAuthenticated &&

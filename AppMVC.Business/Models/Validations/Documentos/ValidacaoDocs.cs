@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-//VALIDACAO DE DOCUMENTOS COM BASE NOS PADROES DO BRASIL
+//Validação de documentos com base nos padrões brasileiros
 
 namespace AppMVC.Business.Models.Validations.Documentos
 {

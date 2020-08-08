@@ -3,8 +3,7 @@
 namespace AppMVC.Business.Models
 {
     public class Endereco : Entity
-    {
-        public Guid FornecedorId { get; set; }
+    {       
         public string Logradouro { get; set; }
         public string Numero { get; set; }
         public string Complemento { get; set; }
@@ -14,6 +13,11 @@ namespace AppMVC.Business.Models
         public string Estado { get; set; }
 
         /* EF Relation */
+        public Guid? FornecedorId { get; set; }
         public Fornecedor Fornecedor { get; set; }
+
+        public Guid? ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
+
     }
 }

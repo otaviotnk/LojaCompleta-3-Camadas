@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Intefaces;
 using AppMVC.Business.Models;
 using AppMVC.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppMVC.Data.Repository
 {

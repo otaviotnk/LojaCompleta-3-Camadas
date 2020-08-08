@@ -2,7 +2,7 @@
 using AppMVC.Business.Intefaces;
 using Microsoft.AspNetCore.Mvc;
 
-//COMPONENTE SUMMARY, QUE É USADO PARA PREENCHER AS BAGS COM MENSAGENS DE ERRO OU SUCESSO
+//Componente de View, que é usado para preencher as Bags de notificação com mensagens de erro, sucesso, alertas, etc...
 
 namespace AppMVC.App.Extensions
 {

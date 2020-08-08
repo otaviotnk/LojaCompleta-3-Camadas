@@ -4,7 +4,7 @@ using AppMVC.Business.Intefaces;
 
 namespace AppMVC.Business.Notificacoes
 {
-    //O NOTIFICADOR IMPLEMENTA A INTERFACE
+    //O notificador implementa a Interface
     public class Notificador : INotificador
     {
         private readonly List<Notificacao> _notificacoes;
@@ -14,7 +14,7 @@ namespace AppMVC.Business.Notificacoes
             _notificacoes = new List<Notificacao>();
         }
 
-        //MANIPULA A NOTIFICACAO, ADICIONANDO ELA(S) NA PILHA
+        //Manipula a notificação, adicionando ela(s) na pilha        
         public void Handle(Notificacao notificacao)
         {
             _notificacoes.Add(notificacao);

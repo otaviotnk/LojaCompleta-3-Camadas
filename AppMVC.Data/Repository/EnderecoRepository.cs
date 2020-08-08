@@ -16,5 +16,12 @@ namespace AppMVC.Data.Repository
             return await Db.Enderecos.AsNoTracking()
                 .FirstOrDefaultAsync(f => f.FornecedorId == fornecedorId);
         }
+
+        public async Task<Endereco> ObterEnderecoPorCliente(Guid clienteId)
+        {
+            return await Db.Enderecos.AsNoTracking()
+                .FirstOrDefaultAsync(c => c.ClienteId == clienteId);
+        }
+
     }
 }

@@ -19,6 +19,37 @@ namespace AppMVC.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AppMVC.Business.Models.Cliente", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Documento")
+                        .IsRequired()
+                        .HasColumnType("varchar(11)");
+
+                    b.Property<int>("Genero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clientes");
+                });
+
             modelBuilder.Entity("AppMVC.Business.Models.Endereco", b =>
                 {
                     b.Property<Guid>("Id")
@@ -37,6 +68,9 @@ namespace AppMVC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<Guid?>("ClienteId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Complemento")
                         .HasColumnType("varchar(250)");
 
@@ -44,7 +78,7 @@ namespace AppMVC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("FornecedorId")
+                    b.Property<Guid?>("FornecedorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Logradouro")
@@ -57,8 +91,13 @@ namespace AppMVC.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId")
+                        .IsUnique()
+                        .HasFilter("[ClienteId] IS NOT NULL");
+
                     b.HasIndex("FornecedorId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[FornecedorId] IS NOT NULL");
 
                     b.ToTable("Enderecos");
                 });
@@ -72,7 +111,7 @@ namespace AppMVC.Data.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("DataNascimento")
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Documento")
@@ -130,10 +169,13 @@ namespace AppMVC.Data.Migrations
 
             modelBuilder.Entity("AppMVC.Business.Models.Endereco", b =>
                 {
+                    b.HasOne("AppMVC.Business.Models.Cliente", "Cliente")
+                        .WithOne("Endereco")
+                        .HasForeignKey("AppMVC.Business.Models.Endereco", "ClienteId");
+
                     b.HasOne("AppMVC.Business.Models.Fornecedor", "Fornecedor")
                         .WithOne("Endereco")
-                        .HasForeignKey("AppMVC.Business.Models.Endereco", "FornecedorId")
-                        .IsRequired();
+                        .HasForeignKey("AppMVC.Business.Models.Endereco", "FornecedorId");
                 });
 
             modelBuilder.Entity("AppMVC.Business.Models.Produto", b =>

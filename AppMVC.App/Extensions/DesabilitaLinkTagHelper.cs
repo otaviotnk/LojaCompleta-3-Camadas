@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AppMVC.App.Extensions
 {
-    //SEMELHANTE AO APAGAELEMENTO, SÓ QUE AQUI ELE SOMENTE DESABILITA O BOTAO, LINK, ETC...
+    // O * diz que se aplica a todo o tipo de Tag e atribui o suppres caso usado e o usuário não tenha a claim necessária
+    //Semelhante ap ApagaElementoByClaimTagHelper, Só que aqui ele somente desabilita o botão, link, etc...
     [HtmlTargetElement("*", Attributes = "disable-by-claim-name")]
     [HtmlTargetElement("*", Attributes = "disable-by-claim-value")]
     public class DesabilitaLinkByClaimTagHelper : TagHelper
@@ -33,9 +34,9 @@ namespace AppMVC.App.Extensions
 
             if (temAcesso) return;
 
-            //REMOVE O HREF
+            //Remove o Href do Tag
             output.Attributes.RemoveAll("href");
-            //ADD OS ATRIBUTOS STYLE E TITLE CASO O USUARIO NAO TENHA ACESSO
+            //Add os atributos Style e Title caso o usuário não tenha acesso
             output.Attributes.Add(new TagHelperAttribute("style", "cursor: not-allowed"));
             output.Attributes.Add(new TagHelperAttribute("title", "Você não tem permissão"));
         }

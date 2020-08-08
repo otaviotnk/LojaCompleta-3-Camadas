@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-//VALIDACOES FEITAS COM TO FLUENT VALIDATION, PARA TRADUZIR AS MENSAGENS DE ERRO
+//Validações feitas com o FluentValidation, para traduzir as mensagens de erro e personalizar
 
 namespace AppMVC.Business.Models.Validations
 {

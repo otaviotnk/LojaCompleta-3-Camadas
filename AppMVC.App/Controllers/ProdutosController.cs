@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AppMVC.App.Data;
+﻿using AppMVC.App.Extensions;
 using AppMVC.App.ViewModels;
 using AppMVC.Business.Intefaces;
+using AppMVC.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using AppMVC.App.Extensions;
-using AppMVC.Business.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace AppMVC.App.Controllers
 {
@@ -26,10 +22,10 @@ namespace AppMVC.App.Controllers
         private readonly IMapper _mapper;
 
         public ProdutosController(IProdutoRepository produtoRepository,
-            IFornecedorRepository fornecedorRepository,
-            IProdutoService produtoService,
-            IMapper mapper,
-            INotificador notificador) : base(notificador)
+                                    IFornecedorRepository fornecedorRepository,
+                                    IProdutoService produtoService,
+                                    IMapper mapper,
+                                    INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _fornecedorRepository = fornecedorRepository;
@@ -37,16 +33,12 @@ namespace AppMVC.App.Controllers
             _mapper = mapper;
         }
 
-
-
-
         // GET: Produtos
         [AllowAnonymous]
         [Route("lista-de-produtos")]
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterProdutosFornecedores()));
-            
+            return View(_mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterProdutosFornecedores()));            
         }
 
         // GET: Produtos/Details/5
@@ -75,9 +67,7 @@ namespace AppMVC.App.Controllers
             return View(produtoViewModel);
         }
 
-        // POST: Produtos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Produtos/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ClaimsAuthorize("Produto", "Adicionar")]
@@ -113,8 +103,7 @@ namespace AppMVC.App.Controllers
         [ClaimsAuthorize("Produto", "Editar")]
         [Route("editar-produto/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
-        {           
-
+        {
             var produtoViewModel = await ObterProduto(id);
             if (produtoViewModel == null)
             {
@@ -124,9 +113,7 @@ namespace AppMVC.App.Controllers
             return View(produtoViewModel);
         }
 
-        // POST: Produtos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Produtos/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ClaimsAuthorize("Produto", "Editar")]
@@ -176,7 +163,6 @@ namespace AppMVC.App.Controllers
         // GET: Produtos/Delete/5
         [ClaimsAuthorize("Produto", "Excluir")]
         [Route("excluir-produto/{id:guid}")]
-
         public async Task<IActionResult> Delete(Guid id)
         {
             var produtoViewModel = await ObterProduto(id);
@@ -193,7 +179,6 @@ namespace AppMVC.App.Controllers
         [ValidateAntiForgeryToken]
         [ClaimsAuthorize("Produto", "Excluir")]
         [Route("excluir-produto/{id:guid}")]
-
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var produtoViewModel = await ObterProduto(id);
@@ -208,7 +193,6 @@ namespace AppMVC.App.Controllers
             if (!OperacaoValida())
             {
                 return View(produtoViewModel);
-
             }
 
             TempData["Sucesso"] = "Produto excluído com sucesso!";
@@ -250,8 +234,6 @@ namespace AppMVC.App.Controllers
             }
 
             return true;
-
-
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using AppMVC.App.Areas.Identity;
 
 namespace AppMVC.App.Areas.Identity.Pages.Account.Manage
 {
@@ -21,7 +22,7 @@ namespace AppMVC.App.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        [Display(Name = "Usuário")]
         public string Username { get; set; }
 
         [TempData]
@@ -31,9 +32,9 @@ namespace AppMVC.App.Areas.Identity.Pages.Account.Manage
         public InputModel Input { get; set; }
 
         public class InputModel
-        {
+        {         
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Telefone")]
             public string PhoneNumber { get; set; }
         }
 
@@ -45,7 +46,8 @@ namespace AppMVC.App.Areas.Identity.Pages.Account.Manage
             Username = userName;
 
             Input = new InputModel
-            {
+            {                
+                
                 PhoneNumber = phoneNumber
             };
         }
@@ -86,9 +88,13 @@ namespace AppMVC.App.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+           
+
+            await _userManager.UpdateAsync(user);
+
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Seu perfil foi atualizado!";
             return RedirectToPage();
         }
     }

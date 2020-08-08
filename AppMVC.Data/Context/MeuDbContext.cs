@@ -18,10 +18,11 @@ namespace AppMVC.Data.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //DEFINE UM PADRAO DE COLUNA A SER CRIADA NO DB CASO NÃO SEJA INFORMADO NO MAPPING OU MIGRATION
+            //Define um padrão para as colunas criadas e não mapeadas            
             foreach (var property in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetProperties()
                     .Where(p => p.ClrType == typeof(string))))
@@ -36,7 +37,7 @@ namespace AppMVC.Data.Context
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            //DEFINE O CAMPO DataCadastro DO BANCO COMO UM DateTime.Now
+            //Define os campos com nome de DataCadastro com um DateTime.Now            
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
             {
                 if (entry.State == EntityState.Added)

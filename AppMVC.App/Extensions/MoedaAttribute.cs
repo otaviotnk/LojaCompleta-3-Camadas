@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Localization;
 
-//ATRIBUTO DE FORMATACAO DE VALIDACAO DE MOEDA
+//Atributo para formatação da validação de moeda
 
 namespace AppMVC.App.Extensions
 {
@@ -28,11 +28,9 @@ namespace AppMVC.App.Extensions
 
     public class MoedaAttributeAdapter : AttributeAdapterBase<MoedaAttribute>
     {
-
         public MoedaAttributeAdapter(MoedaAttribute attribute, IStringLocalizer stringLocalizer) : base(attribute, stringLocalizer)
-        {
+        {}
 
-        }
         public override void AddValidation(ClientModelValidationContext context)
         {
             if (context == null)

@@ -30,7 +30,6 @@ namespace AppMVC.App.ViewModels
         [NotMapped]
         [DisplayName("Imagem do Produto")]
         public IFormFile ImagemUpload { get; set; }
-
         public string Imagem { get; set; }
 
         [Moeda]
