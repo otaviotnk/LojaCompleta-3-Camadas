@@ -12,10 +12,10 @@
     </div>
     <div class="col-md-6">
         <dl>
-            <dt>
+            <dt supress-by-claim-name="Produto" supress-by-claim-value="">
                 @Html.DisplayNameFor(model => model.FornecedorId)
             </dt>
-            <dd>
+            <dd supress-by-claim-name="Produto" supress-by-claim-value="">
                 @Html.DisplayFor(model => model.Fornecedor.Nome)
             </dd>
             <dt>
@@ -36,10 +36,10 @@
             <dd>
                 @Model.Valor.ToString("C")
             </dd>
-            <dt>
+            <dt supress-by-claim-name="Produto" supress-by-claim-value="">
                 @Html.DisplayNameFor(model => model.DataCadastro)
             </dt>
-            <dd>
+            <dd supress-by-claim-name="Produto" supress-by-claim-value="">
                 @Html.DisplayFor(model => model.DataCadastro)
             </dd>
             <dt>

@@ -1,63 +1,57 @@
-﻿@model AppMVC.App.ViewModels.ClienteViewModel
+﻿@using AppMVC.App.Extensions
+@model AppMVC.App.ViewModels.ClienteViewModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Detalhes de " + Model.Nome;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+<h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>ClienteViewModel</h4>
+    <h4 class="alert alert-info"><span class="fa fa-info-circle"></span> Informações somente leitura</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Documento)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Documento)
+        <dd class="col-sm-10">
+            @this.FormataDocumento(1, Model.Documento)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genero)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Genero)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DataNascimento)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DataNascimento)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataCadastro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataCadastro)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ativo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ativo)
+        </dd>
+        <dt class="col-sm-2">
+            Cadastrado desde
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataCadastro)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-dark" supress-by-claim-name="Cliente" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="btn btn-info" asp-action="Index">Voltar</a>
 </div>
-</body>
-</html>
+
+<partial name="_DetalhesEndereco" />

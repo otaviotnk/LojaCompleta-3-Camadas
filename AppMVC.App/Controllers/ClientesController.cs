@@ -31,7 +31,6 @@ namespace AppMVC.App.Controllers
             _mapper = mapper;
         }
 
-
         // GET: Clientes
         [Route("lista-de-clientes")]
         public async Task<IActionResult> Index()
@@ -140,7 +139,7 @@ namespace AppMVC.App.Controllers
 
 
         // GET: Clientes/Delete/5
-        [ClaimsAuthorize("Cliente", "Exluir")]
+        [ClaimsAuthorize("Cliente", "Excluir")]
         [Route("excluir-cliente/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -157,7 +156,7 @@ namespace AppMVC.App.Controllers
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [ClaimsAuthorize("Cliente", "Exluir")]
+        [ClaimsAuthorize("Cliente", "Excluir")]
         [Route("excluir-cliente/{id:guid}")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {

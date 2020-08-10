@@ -4,7 +4,7 @@
 
 
 @{
-    ViewData["Title"] = "Lista de Fornecedores";
+    ViewData["Title"] = "Lista de Clientes";
 }
 
 <vc:Summary></vc:Summary>
@@ -45,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Documento)
+                    @this.FormataDocumento(1, item.Documento)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Genero)

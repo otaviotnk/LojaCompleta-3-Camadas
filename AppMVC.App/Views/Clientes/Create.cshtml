@@ -1,24 +1,22 @@
 ﻿@model AppMVC.App.ViewModels.ClienteViewModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Novo Cliente";
 }
 
-<!DOCTYPE html>
+<h1>@ViewData["Title"]</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-
-<h4>ClienteViewModel</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create">
+    <div class="row">
+
+        <div class="col-md-6">
+
+            @*Aqui aparecem as bag de erro"*@
+            <vc:Summary></vc:Summary>
+
+            <h4 style="color: cornflowerblue">Dados Pessoais <span class="fas fa-user"></span></h4>
+            <hr />
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -30,38 +28,47 @@
                 <span asp-validation-for="Documento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Genero" class="control-label"></label>
-                <select asp-for="Genero" class="form-control"></select>
-                <span asp-validation-for="Genero" class="text-danger"></span>
+                <label asp-for="Genero" class="control-label"></label><br />
+                <input type="radio" value="1" asp-for="Genero" checked /> Masculino<br />
+                <input type="radio" value="2" asp-for="Genero" /> Feminino<br />
+                <input type="radio" value="3" asp-for="Genero" /> Não Informado
             </div>
             <div class="form-group">
                 <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
+                <input type="date" asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DataCadastro" class="control-label"></label>
-                <input asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
+
+            <hr />
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
             </div>
-        </form>
-    </div>
-</div>
+        </div>        
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div class="col-md-6">
+            <h4 style="color: cornflowerblue">Endereço <span class="fas fa-map-marked-alt"></span></h4>
+            <hr />
+
+            <partial name="_Endereco" />
+
+        </div>
+    </div>
+</form>
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        BuscaCep();
+    </script>
 }
-</body>
-</html>
