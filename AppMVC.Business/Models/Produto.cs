@@ -8,6 +8,7 @@ namespace AppMVC.Business.Models
         public string Descricao { get; set; }
         public string Imagem { get; set; }
         public decimal Valor { get; set; }
+        public int Quantidade { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
 

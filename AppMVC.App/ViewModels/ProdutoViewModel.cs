@@ -37,6 +37,9 @@ namespace AppMVC.App.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public decimal Valor { get; set; }
 
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public int Quantidade { get; set; }
+
         [ScaffoldColumn(false)]
         [DisplayName("Data de Cadastro")]
         public DateTime DataCadastro { get; set; }
