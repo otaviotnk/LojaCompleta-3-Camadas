@@ -6,7 +6,7 @@ using AppMVC.Business.Models;
 
 namespace AppMVC.Business.Intefaces
 {
-    //TEntity é uma entidade genérica
+    //TEntity é uma entidade genérica que herda de Entity (Guid id)
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {
         Task Adicionar(TEntity entity);

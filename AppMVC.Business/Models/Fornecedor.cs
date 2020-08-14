@@ -9,11 +9,11 @@ namespace AppMVC.Business.Models
         public string Nome { get; set; }
         public string Documento { get; set; }
         public DateTime DataCadastro { get; set; }
-        public TipoFornecedor TipoFornecedor { get; set; }
+        public TipoPessoa TipoPessoa { get; set; }
         public Endereco Endereco { get; set; }
         public bool Ativo { get; set; }
 
-        /* EF Relations */
+        //Relacionamento EF
         [NotMapped]
         public IEnumerable<Produto> Produtos { get; set; }
     }

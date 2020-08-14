@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AppMVC.App.ViewModels.VendaViewModel>
+@using AppMVC.App.Extensions
+
+@* Esta view deve ficar abaixo da tela de Create de Venda *@
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalVenda)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalVenda)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |               
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

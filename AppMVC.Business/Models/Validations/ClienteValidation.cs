@@ -29,8 +29,21 @@ namespace AppMVC.Business.Models.Validations
             RuleFor(c => c.Documento.Length).Equal(CpfValidacao.TamanhoCpf)
                     .WithMessage("O campo Documento precisa ter {ComparisonValue} caracteres e foi fornecido {PropertyValue}.");
 
-            RuleFor(c => CpfValidacao.Validar(c.Documento)).Equal(true)
-                .WithMessage("O documento fornecido é inválido.");
+            When(f => f.TipoPessoa == TipoPessoa.PessoaFisica, () =>
+            {
+                RuleFor(f => f.Documento.Length).Equal(CpfValidacao.TamanhoCpf)
+                    .WithMessage("O campo Documento precisa ter {ComparisonValue} caracteres e foi fornecido {PropertyValue}.");
+                RuleFor(f => CpfValidacao.Validar(f.Documento)).Equal(true)
+                    .WithMessage("O documento fornecido é inválido.");
+            });
+
+            When(f => f.TipoPessoa == TipoPessoa.PessoaJuridica, () =>
+            {
+                RuleFor(f => f.Documento.Length).Equal(CnpjValidacao.TamanhoCnpj)
+                    .WithMessage("O campo Documento precisa ter {ComparisonValue} caracteres e foi fornecido {PropertyValue}.");
+                RuleFor(f => CnpjValidacao.Validar(f.Documento)).Equal(true)
+                    .WithMessage("O documento fornecido é inválido.");
+            });
 
         }
     }

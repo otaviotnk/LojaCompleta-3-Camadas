@@ -14,6 +14,7 @@ namespace AppMVC.App.AutoMapper
             CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
             CreateMap<Produto, ProdutoViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
+            CreateMap<Venda, VendaViewModel>().ReverseMap();
         }
     }
 }

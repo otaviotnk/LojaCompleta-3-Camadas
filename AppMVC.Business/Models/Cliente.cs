@@ -10,6 +10,7 @@ namespace AppMVC.Business.Models
         public Genero Genero { get; set; }
         public DateTime DataNascimento { get; set; }
         public Endereco Endereco { get; set; }
+        public TipoPessoa TipoPessoa { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
     }

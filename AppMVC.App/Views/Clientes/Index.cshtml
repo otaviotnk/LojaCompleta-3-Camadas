@@ -45,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @this.FormataDocumento(1, item.Documento)
+                    @this.FormataDocumento(item.TipoPessoa, item.Documento)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Genero)

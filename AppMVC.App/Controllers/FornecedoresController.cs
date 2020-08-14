@@ -13,7 +13,7 @@ namespace AppMVC.App.Controllers
 {
     public class FornecedoresController : BaseController
     {
-        //Injetando os Repositorios, Servicoes e Mapeamento
+        //Injetando os Repositorios, Servicos e Mapeamento
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IFornecedorService _fornecedorService;
         private readonly IMapper _mapper;

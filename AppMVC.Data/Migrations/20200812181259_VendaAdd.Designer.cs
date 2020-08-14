@@ -4,14 +4,16 @@ using AppMVC.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppMVC.Data.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
-    partial class MeuDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200812181259_VendaAdd")]
+    partial class VendaAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,7 +188,7 @@ namespace AppMVC.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Observacoes")
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("ProdutoId")
                         .HasColumnType("uniqueidentifier");
@@ -206,6 +208,8 @@ namespace AppMVC.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Vendas");
                 });
@@ -234,6 +238,11 @@ namespace AppMVC.Data.Migrations
                     b.HasOne("AppMVC.Business.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
+                        .IsRequired();
+
+                    b.HasOne("AppMVC.Business.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

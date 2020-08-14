@@ -23,7 +23,7 @@ namespace AppMVC.App.ViewModels
         public DateTime DataCadastro { get; set; }
 
         [DisplayName("Tipo")]
-        public int TipoFornecedor { get; set; }
+        public int TipoPessoa { get; set; }
         
         public EnderecoViewModel Endereco { get; set; }
 

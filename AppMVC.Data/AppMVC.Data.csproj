@@ -15,6 +15,22 @@
     <Compile Remove="Migrations\20200806212324_ClienteModel.Designer.cs" />
     <Compile Remove="Migrations\20200807182633_ClienteTests.v4.cs" />
     <Compile Remove="Migrations\20200807182633_ClienteTests.v4.Designer.cs" />
+    <Compile Remove="Migrations\20200812175609_VendaAdd.cs" />
+    <Compile Remove="Migrations\20200812175609_VendaAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200812175927_VendaAdd.cs" />
+    <Compile Remove="Migrations\20200812175927_VendaAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200812180051_VendaAdd.cs" />
+    <Compile Remove="Migrations\20200812180051_VendaAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200812180330_VendaAdd.cs" />
+    <Compile Remove="Migrations\20200812180330_VendaAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200812180745_VendaAdd.cs" />
+    <Compile Remove="Migrations\20200812180745_VendaAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200812181027_VendaAdd.cs" />
+    <Compile Remove="Migrations\20200812181027_VendaAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200812212236_Test.cs" />
+    <Compile Remove="Migrations\20200812212236_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200813190406_Test2.cs" />
+    <Compile Remove="Migrations\20200813190406_Test2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

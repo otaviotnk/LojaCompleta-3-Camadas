@@ -1,6 +1,6 @@
-﻿using System;
+﻿using AppMVC.Business.Models;
+using System;
 using System.Threading.Tasks;
-using AppMVC.Business.Models;
 
 namespace AppMVC.Business.Intefaces
 {

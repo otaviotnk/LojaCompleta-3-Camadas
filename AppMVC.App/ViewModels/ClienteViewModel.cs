@@ -21,6 +21,9 @@ namespace AppMVC.App.ViewModels
         [DisplayName("Gênero")]
         public Genero Genero { get; set; }
 
+        [DisplayName("Tipo")]
+        public int TipoPessoa { get; set; }
+
         [DisplayName("Data de Nascimento")]
         [Required(ErrorMessage = "Favor informar uma Data")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]

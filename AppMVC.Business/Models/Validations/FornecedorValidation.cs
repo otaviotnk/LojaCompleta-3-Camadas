@@ -17,7 +17,7 @@ namespace AppMVC.Business.Models.Validations
                 .Length(2, 100)
                 .WithMessage(lengthMessage);
 
-            When(f => f.TipoFornecedor == TipoFornecedor.PessoaFisica, () =>
+            When(f => f.TipoPessoa == TipoPessoa.PessoaFisica, () =>
             {
                 RuleFor(f => f.Documento.Length).Equal(CpfValidacao.TamanhoCpf)
                     .WithMessage("O campo Documento precisa ter {ComparisonValue} caracteres e foi fornecido {PropertyValue}.");
@@ -25,7 +25,7 @@ namespace AppMVC.Business.Models.Validations
                     .WithMessage("O documento fornecido é inválido.");
             });
 
-            When(f => f.TipoFornecedor == TipoFornecedor.PessoaJuridica, () =>
+            When(f => f.TipoPessoa == TipoPessoa.PessoaJuridica, () =>
             {
                 RuleFor(f => f.Documento.Length).Equal(CnpjValidacao.TamanhoCnpj)
                     .WithMessage("O campo Documento precisa ter {ComparisonValue} caracteres e foi fornecido {PropertyValue}.");
