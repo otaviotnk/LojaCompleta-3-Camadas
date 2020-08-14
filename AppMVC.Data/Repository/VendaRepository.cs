@@ -23,7 +23,7 @@ namespace AppMVC.Data.Repository
         {
             return await Db.Vendas.AsNoTracking()
                 .Include(c => c.Cliente)
-                .Include(p => p.Produtos)
+                //.Include(p => p.Produtos)
                 .FirstOrDefaultAsync(i => i.Id == id);
         }
     }

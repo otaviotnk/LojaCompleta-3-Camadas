@@ -53,7 +53,7 @@ namespace AppMVC.App.Controllers
         // GET: Vendas/Create
         public async Task<IActionResult> CreateAsync()
         {
-            var vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
+            var vendaViewModel = await PopularClientes(new VendaViewModel());
             return View(vendaViewModel);
         }
 
@@ -62,7 +62,7 @@ namespace AppMVC.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VendaViewModel vendaViewModel)
         {
-            vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
+            vendaViewModel = await PopularClientes(new VendaViewModel());
 
             if (!ModelState.IsValid)
             {
@@ -163,10 +163,10 @@ namespace AppMVC.App.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        
         public async Task<IActionResult> AdicionarProduto()
         {
-            var vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
+            var vendaViewModel = await PopularClientes(new VendaViewModel());
             return PartialView("_AdicionarProduto", vendaViewModel);
             
         }
@@ -182,19 +182,21 @@ namespace AppMVC.App.Controllers
             return vendaViewModel;
         }
 
-        private async Task<VendaViewModel> PopularProdutos(VendaViewModel vendaViewModel)
-        {
-            vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
-            return vendaViewModel;
-        }               
+        //COLOCAR NA CONTROLLER DE PEDIDOS
 
-        private async Task<VendaViewModel> PopularClientesProdutos(VendaViewModel vendaViewModel) 
-        {
-            vendaViewModel.Clientes = _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos());
-            vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
-            return vendaViewModel;
+        //private async Task<VendaViewModel> PopularProdutos(VendaViewModel vendaViewModel)
+        //{
+        //    vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
+        //    return vendaViewModel;
+        //}               
 
-        }
+        //private async Task<VendaViewModel> PopularClientesProdutos(VendaViewModel vendaViewModel) 
+        //{
+        //    vendaViewModel.Clientes = _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos());
+        //    vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
+        //    return vendaViewModel;
+
+        //}
 
     }
 }

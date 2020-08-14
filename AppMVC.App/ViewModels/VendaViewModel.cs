@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppMVC.App.ViewModels
 {
@@ -12,8 +11,6 @@ namespace AppMVC.App.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [DisplayName("Quantidade")]
-        public int QuantidadeVenda { get; set; }
         public decimal TotalVenda { get; set; }
 
         [DisplayName("Data Venda")]
@@ -35,9 +32,14 @@ namespace AppMVC.App.ViewModels
         public ClienteViewModel Cliente { get; set; }
         public IEnumerable<ClienteViewModel> Clientes { get; set; }
 
-        [DisplayName("Produto")]
-        public Guid ProdutoId { get; set; }
-        public ProdutoViewModel Produto { get; set; }
-        public IEnumerable<ProdutoViewModel> Produtos { get; set; }
+        //Dados para preencher com o que vem de ClienteId
+        public string Cep { get; set; }
+        public string Estado { get; set; }
+        public string Cidade { get; set; }
+        public string Bairro { get; set; }
+        public string Logradouro { get; set; }
+        public int Numero { get; set; }
+        public string Complemento { get; set; }
+
     }
 }

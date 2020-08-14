@@ -11,10 +11,7 @@ namespace AppMVC.Business.Models.Validations
 
             RuleFor(v => v.Observacoes)                
                 .Length(5, 500)
-                .WithMessage(lengthMessage);
-
-            RuleFor(v => v.QuantidadeVenda)
-                .NotEmpty().WithMessage(defaultMessage);            
+                .WithMessage(lengthMessage);                  
             
         }
     }
