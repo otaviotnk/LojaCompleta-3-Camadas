@@ -42,3 +42,15 @@
     </div>
 }
 
+@* Se tiver Erro (para usar, tem que marcar na acão da controller, esta mensagem aparece em outra tela sem ser a do formulário ) *@
+@if (TempData["Erro"] != null)
+{
+    <div style="padding-top: 15px"></div>
+
+    <div id="msg_box" class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4 id="msgRetorno"><span class="fas fa-exclamation-triangle"></span> @Html.Raw(TempData["Erro"].ToString())</h4>
+    </div>
+}
+
+

@@ -1,15 +1,20 @@
-﻿using AppMVC.App.Models;
+﻿using AppMVC.App.Extensions;
+using AppMVC.App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppMVC.App.Controllers
 {
+    [Authorize]
+
     public class HomeController : Controller
-    {       
+    {
         public IActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();

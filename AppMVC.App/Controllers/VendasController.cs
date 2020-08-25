@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using Newtonsoft.Json;
+using AppMVC.Data.Migrations;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace AppMVC.App.Controllers
 {
@@ -14,7 +18,7 @@ namespace AppMVC.App.Controllers
         private readonly IProdutoRepository _produtoRepository;
         private readonly IClienteRepository _clienteRepository;
         private readonly IVendaRepository _vendaRepository;
-        private readonly IVendaService _vendaService;       
+        private readonly IVendaService _vendaService;
         private readonly IMapper _mapper;
 
         public VendasController(IVendaRepository vendaRepository,
@@ -34,7 +38,7 @@ namespace AppMVC.App.Controllers
 
         // GET: Vendas
         public async Task<IActionResult> Index()
-        {            
+        {
             return View(_mapper.Map<IEnumerable<VendaViewModel>>(await _vendaRepository.ObterTodos()));
         }
 
@@ -51,9 +55,9 @@ namespace AppMVC.App.Controllers
         }
 
         // GET: Vendas/Create
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
         {
-            var vendaViewModel = await PopularClientes(new VendaViewModel());
+            var vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
             return View(vendaViewModel);
         }
 
@@ -62,29 +66,48 @@ namespace AppMVC.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VendaViewModel vendaViewModel)
         {
-            vendaViewModel = await PopularClientes(new VendaViewModel());
-
             if (!ModelState.IsValid)
             {
+                vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
+
                 return View(vendaViewModel);
             }
+
             var venda = _mapper.Map<Venda>(vendaViewModel);
 
-            venda.DataVenda = DateTime.Now;
-            venda.StatusVenda = StatusVenda.Criada;
+            var produto = await _produtoRepository.ObterPorId(venda.ProdutoId);
 
-            await _vendaRepository.Adicionar(venda);
+            if (venda.Quantidade > produto.Quantidade)
+            {
+                ModelState.AddModelError("", "A quantidade do pedido excede o estoque do produto");
+                vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
+                return View(vendaViewModel);
+            }
+
+            if (venda.Quantidade <= 0)
+            {
+                ModelState.AddModelError("", "A quantidade do produto deve ser maior que 0");
+                vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
+                return View(vendaViewModel);
+            }
+
+            venda.StatusVenda = StatusVenda.Criada;
+            venda.TotalVenda = venda.Quantidade * produto.Valor;
+
+            produto.Quantidade += - venda.Quantidade;
+
+            await _produtoRepository.Atualizar(produto);
+            await _vendaService.Adicionar(venda);
 
             if (!OperacaoValida())
             {
                 return View(vendaViewModel);
-
             }
 
-            TempData["Sucesso"] = "Venda Cadastrada com sucesso!";
+            TempData["Sucesso"] = "Venda cadastrada com sucesso!";
+
             return RedirectToAction(nameof(Index));
         }
-
         // GET: Vendas/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -113,7 +136,8 @@ namespace AppMVC.App.Controllers
             }
 
             var venda = _mapper.Map<Venda>(vendaViewModel);
-            await _vendaRepository.Atualizar(venda);
+            //ou vendarepository
+            await _vendaService.Atualizar(venda);
 
             if (!OperacaoValida())
             {
@@ -129,12 +153,11 @@ namespace AppMVC.App.Controllers
         // GET: Vendas/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
-            var vendaViewModel = await ObterVendaPorId(id);
-
-            if (vendaViewModel == null)
+            if (id == null)
             {
                 return NotFound();
             }
+            var vendaViewModel = await ObterVendaPorId(id);
             return View(vendaViewModel);
         }
 
@@ -143,33 +166,48 @@ namespace AppMVC.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var venda = await ObterVendaPorId(id);
-            if (venda == null)
+
+            if (id == null)
             {
                 return NotFound();
             }
 
-            venda.StatusVenda = StatusVenda.Cancelada;
+            var venda = await ObterVendaPorId(id);
+            var produto = await _produtoRepository.ObterPorId(venda.ProdutoId);
+            var vendaViewModel = _mapper.Map<Venda>(venda);
 
-            //criar metodo para atualizar status
-            //await _vendaService.Atualizar(venda);
-            await _vendaService.Remover(id);
 
-            if (!OperacaoValida())
+            //Dá para mudar para um Switch/Case
+            if (vendaViewModel.StatusVenda == StatusVenda.Criada)
             {
-                return View(venda);
-            }
-            TempData["Sucesso"] = "Venda removida com sucesso";
+                await _vendaService.Remover(id);
+                TempData["Sucesso"] = "Venda excluída com Sucesso!";
 
-            return RedirectToAction(nameof(Index));
+                produto.Quantidade += venda.Quantidade;
+                await _produtoRepository.Atualizar(produto);
+
+                return RedirectToAction(nameof(Index));
+
+            }
+
+            if (vendaViewModel.StatusVenda == StatusVenda.Cancelada)
+            {
+                TempData["Editado"] = "Esta venda já está Cancelada, porém não pode ser excluída pois há faturas!";
+                return RedirectToAction(nameof(Delete));
+
+            }
+
+            vendaViewModel.StatusVenda = StatusVenda.Cancelada;
+            await _vendaService.Atualizar(vendaViewModel);
+            TempData["Erro"] = "Venda não foi excluída pois já foi faturada!";
+            TempData["Erro"] = "Venda Cancelada! A Venda não foi excluída pois já foi faturada!";
+
+            return RedirectToAction(nameof(Delete));
+
+
+
         }
-        
-        public async Task<IActionResult> AdicionarProduto()
-        {
-            var vendaViewModel = await PopularClientes(new VendaViewModel());
-            return PartialView("_AdicionarProduto", vendaViewModel);
-            
-        }
+
 
         private async Task<VendaViewModel> ObterVendaPorId(Guid id)
         {
@@ -182,21 +220,13 @@ namespace AppMVC.App.Controllers
             return vendaViewModel;
         }
 
-        //COLOCAR NA CONTROLLER DE PEDIDOS
+        private async Task<VendaViewModel> PopularClientesProdutos(VendaViewModel vendaViewModel)
+        {
+            vendaViewModel.Clientes = _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos());
+            vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
+            return vendaViewModel;
 
-        //private async Task<VendaViewModel> PopularProdutos(VendaViewModel vendaViewModel)
-        //{
-        //    vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
-        //    return vendaViewModel;
-        //}               
-
-        //private async Task<VendaViewModel> PopularClientesProdutos(VendaViewModel vendaViewModel) 
-        //{
-        //    vendaViewModel.Clientes = _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos());
-        //    vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
-        //    return vendaViewModel;
-
-        //}
+        }
 
     }
 }

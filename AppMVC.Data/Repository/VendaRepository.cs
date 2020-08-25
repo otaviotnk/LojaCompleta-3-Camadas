@@ -22,8 +22,7 @@ namespace AppMVC.Data.Repository
         public async Task<Venda> ObterCarrinhoCliente(Guid id)
         {
             return await Db.Vendas.AsNoTracking()
-                .Include(c => c.Cliente)
-                //.Include(p => p.Produtos)
+                .Include(c => c.Cliente)               
                 .FirstOrDefaultAsync(i => i.Id == id);
         }
     }

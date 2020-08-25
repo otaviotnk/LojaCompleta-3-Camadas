@@ -102,13 +102,7 @@ function BuscaCep() {
             }
         });
     });
-}
-
-//Seta o tempo que a msg_box ficará na tela
-$(document).ready(function () {
-    $("#msg_box").fadeOut(2500);
-});
-
+};
 
 function AjaxModal2() {
 
@@ -150,4 +144,9 @@ function AjaxModal2() {
             });
         }
     });
-}
+};
+
+//Seta o tempo que a msg_box ficará na tela
+$(document).ready(function () {
+    $("#msg_box").fadeOut(4500);
+});

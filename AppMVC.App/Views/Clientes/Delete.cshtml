@@ -4,66 +4,70 @@
 @{
     ViewData["Title"] = "Excluir Cliente " + Model.Nome;
 }
+<div class="container">
+    <br />
+    <h1>@ViewData["Title"]</h1>
 
-<h1>@ViewData["Title"]</h1>
-
-<vc:Summary></vc:Summary>
-
-<h4 class="alert alert-danger"><span class="fa fa-exclamation-triangle"></span> Esta ação será permanente!</h4>
-
-<div class="row">
     <hr />
-    <div class="col-md-6">
-        <dl class="col-md-12">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Documento)
-            </dt>
-            <dd class="col-sm-10">
-                @* Define que sempre será um CPF(1) *@
-                @this.FormataDocumento(1, Model.Documento)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Genero)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Genero)
-            </dd>
-            <dt class="col-sm-10">
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DataNascimento)
-            </dd>
-        </dl>
+    <vc:Summary></vc:Summary>
+
+    <h4 class="alert alert-danger"><span class="fa fa-exclamation-triangle"></span> Esta ação será permanente!</h4>
+
+    <div class="row caixa-informacoes">
+        <hr />
+        <div class="col-md-6">
+            <dl class="col-md-12">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Documento)
+                </dt>
+                <dd class="col-sm-10">
+                    @* Define que sempre será um CPF(1) *@
+                    @this.FormataDocumento(1, Model.Documento)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Genero)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Genero)
+                </dd>
+                <dt class="col-sm-10">
+                    @Html.DisplayNameFor(model => model.DataNascimento)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataNascimento)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-md-6">
+            <dl class="col-md-12">
+                <dt class="col-sm-10">
+                    Cadastrado Desde
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataCadastro)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Ativo)
+                </dd>
+            </dl>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </form>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <dl class="col-md-12">
-            <dt class="col-sm-10">
-                Cadastrado Desde
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DataCadastro)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Ativo)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Ativo)
-            </dd>
-        </dl>
-        <form asp-action="Delete">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Excluir" class="btn btn-danger" />
-            <a class="btn btn-info" asp-action="Index">Voltar</a>
-        </form>
-    </div>
+    <partial name="_DetalhesEndereco" />
+
 </div>
-
-<partial name="_DetalhesEndereco" />

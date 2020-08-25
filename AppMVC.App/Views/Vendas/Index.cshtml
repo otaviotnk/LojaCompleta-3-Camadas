@@ -3,57 +3,56 @@
 @{
     ViewData["Title"] = "Lista de Vendas";
 }
+<div class="container">
+    <br />
+    <vc:Summary></vc:Summary>
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <p>
+        <a class="btn btn-info" asp-action="Create">Nova Venda</a>
+    </p>
 
-<vc:Summary></vc:Summary>
-
-<h1>@ViewData["Title"]</h1>
-
-@* Retira o botão de adicionar caso não tenha a Claim *@
-@*<p supress-by-claim-name="Fornecedor" supress-by-claim-value="Adicionar"*@
-<p>
-    <a class="btn btn-info" asp-action="Create">Nova Venda</a>
-</p>
-
-<table class="table table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataVenda)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Clientes)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.TipoVenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusVenda)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-hover">
+        <thead class="thead-dark">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataVenda)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Clientes.)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoVenda)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StatusVenda)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataVenda)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Clientes)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoVenda)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StatusVenda)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody class="fundo-tabela">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataVenda)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Clientes.)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoVenda)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusVenda)
+                    </td>
+                    <td class="text-right">
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-search"></span></a>
+                        <a class="btn btn-warning" supress-by-claim-value="Editar" supress-by-claim-name="Venda" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pencil-alt"></span></a>
+                        <a class="btn btn-danger" supress-by-claim-value="Excluir" supress-by-claim-name="Venda" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

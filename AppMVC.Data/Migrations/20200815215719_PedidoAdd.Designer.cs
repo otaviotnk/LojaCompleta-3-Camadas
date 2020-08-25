@@ -4,14 +4,16 @@ using AppMVC.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppMVC.Data.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
-    partial class MeuDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200815215719_PedidoAdd")]
+    partial class PedidoAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,6 +135,33 @@ namespace AppMVC.Data.Migrations
                     b.ToTable("Fornecedores");
                 });
 
+            modelBuilder.Entity("AppMVC.Business.Models.Pedido", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProdutoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("QuantidadeTotalProduto")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ValorTotalProduto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("VendaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.HasIndex("VendaId");
+
+                    b.ToTable("Pedidos");
+                });
+
             modelBuilder.Entity("AppMVC.Business.Models.Produto", b =>
                 {
                     b.Property<Guid>("Id")
@@ -179,20 +208,35 @@ namespace AppMVC.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Bairro")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Complemento")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Estado")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Logradouro")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
+
                     b.Property<string>("Observacoes")
                         .HasColumnType("varchar(500)");
-
-                    b.Property<Guid>("ProdutoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
 
                     b.Property<int>("StatusVenda")
                         .HasColumnType("int");
@@ -219,6 +263,19 @@ namespace AppMVC.Data.Migrations
                     b.HasOne("AppMVC.Business.Models.Fornecedor", "Fornecedor")
                         .WithOne("Endereco")
                         .HasForeignKey("AppMVC.Business.Models.Endereco", "FornecedorId");
+                });
+
+            modelBuilder.Entity("AppMVC.Business.Models.Pedido", b =>
+                {
+                    b.HasOne("AppMVC.Business.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .IsRequired();
+
+                    b.HasOne("AppMVC.Business.Models.Venda", "Venda")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("VendaId")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppMVC.Business.Models.Produto", b =>

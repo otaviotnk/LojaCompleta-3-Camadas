@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppMVC.Business.Models
 {
@@ -9,22 +11,18 @@ namespace AppMVC.Business.Models
         public TipoVenda TipoVenda { get; set; }
         public StatusVenda StatusVenda { get; set; }
         public string Observacoes { get; set; }
-
-        //Para salvar o endereço de entrega do pedido
-        public string Cep { get; set; }
-        public string Estado { get; set; }
-        public string Cidade { get; set; }
-        public string Bairro { get; set; }
-        public string Logradouro { get; set; }
-        public int Numero { get; set; }
-        public string Complemento { get; set; }
-
+        public int Quantidade { get; set; }
 
         //Relacionamento EF
         public Guid ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 
-        //AQUI DEVE ENTRAR O RELACIONAMENTO COM  PEDIDO
-        
+        //Relacionamento para tentar colocar vários produtos em um pedido
+        public Guid ProdutoId { get; set; }
+       
+        [NotMapped]
+        public IEnumerable<Produto> Produtos { get; set; }
+
+
     }
 }

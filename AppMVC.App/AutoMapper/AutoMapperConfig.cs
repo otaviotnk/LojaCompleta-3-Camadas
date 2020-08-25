@@ -16,5 +16,6 @@ namespace AppMVC.App.AutoMapper
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
             CreateMap<Venda, VendaViewModel>().ReverseMap();
         }
+
     }
 }

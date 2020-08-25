@@ -3,71 +3,74 @@
 @{
     ViewData["Title"] = "Novo Cliente";
 }
+<div class="container">
+    <br />
 
-<h1>@ViewData["Title"]</h1>
+    <h1>@ViewData["Title"]</h1>
 
-<hr />
-<form asp-action="Create">
-    <div class="row">
-
-        <div class="col-md-6">
+    <hr />
+    <form asp-action="Create">
+        <div class="row caixa-informacoes">
 
             @*Aqui aparecem as bag de erro"*@
             <vc:Summary></vc:Summary>
 
-            <h4 style="color: cornflowerblue">Dados Pessoais <span class="fas fa-user"></span></h4>
-            <hr />
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoPessoa" class="control-label"></label><br />
-                <input type="radio" value="1" asp-for="TipoPessoa" checked /> Pessoa Física<br />
-                <input type="radio" value="2" asp-for="TipoPessoa" /> Pessoa Jurídica
-            </div>
-            <div class="form-group">
-                <label asp-for="Documento" class="control-label"></label>
-                <input asp-for="Documento" class="form-control" />
-                <span asp-validation-for="Documento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genero" class="control-label"></label><br />
-                <input type="radio" value="1" asp-for="Genero" checked /> Masculino<br />
-                <input type="radio" value="2" asp-for="Genero" /> Feminino<br />
-                <input type="radio" value="3" asp-for="Genero" /> Não Informado
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input type="date" asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            <div class="col-md-6">
+
+                <h4 style="color: cornflowerblue">Dados Pessoais <span class="fas fa-user"></span></h4>
+                <hr />
+
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TipoPessoa" class="control-label"></label><br />
+                    <input type="radio" value="1" asp-for="TipoPessoa" checked /> Pessoa Física<br />
+                    <input type="radio" value="2" asp-for="TipoPessoa" /> Pessoa Jurídica
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documento" class="control-label"></label>
+                    <input asp-for="Documento" class="form-control" />
+                    <span asp-validation-for="Documento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genero" class="control-label"></label><br />
+                    <input type="radio" value="1" asp-for="Genero" checked /> Masculino<br />
+                    <input type="radio" value="2" asp-for="Genero" /> Feminino<br />
+                    <input type="radio" value="3" asp-for="Genero" /> Não Informado
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataNascimento" class="control-label"></label>
+                    <input type="date" asp-for="DataNascimento" class="form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+
+                <hr />
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
+                </div>
             </div>
 
-            <hr />
+            <div class="col-md-6">
+                <h4 style="color: cornflowerblue">Endereço <span class="fas fa-map-marked-alt"></span></h4>
+                <hr />
 
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
-                </label>
+                <partial name="_Endereco" />
+
             </div>
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <a class="btn btn-info" asp-action="Index">Voltar</a>
-            </div>
-        </div>        
-
-        <div class="col-md-6">
-            <h4 style="color: cornflowerblue">Endereço <span class="fas fa-map-marked-alt"></span></h4>
-            <hr />
-
-            <partial name="_Endereco" />
-
         </div>
-    </div>
-</form>
+    </form>
 
-
+</div>
 
 
 @section Scripts {

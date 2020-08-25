@@ -8,6 +8,6 @@ namespace AppMVC.Business.Intefaces
     {
         Task Adicionar(Venda venda);
         Task Atualizar(Venda venda);
-        Task Remover(Guid id);       
+        Task Remover(Guid id);        
     }
 }

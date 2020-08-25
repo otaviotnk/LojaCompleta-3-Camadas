@@ -49,12 +49,12 @@ namespace AppMVC.App.Areas.Identity.Pages.Account
         public class InputModel
         {                  
 
-            [Required]
+            [Required(ErrorMessage = "O Campo {0} deve ser preenchido.")]
             [EmailAddress]
             [Display(Name = "E-mail")]
             public string Email { get; set; }            
 
-            [Required]
+            [Required(ErrorMessage = "O Campo {0} deve ser preenchido.")]
             [StringLength(100, ErrorMessage = "O {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]

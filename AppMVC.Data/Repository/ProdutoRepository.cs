@@ -13,6 +13,7 @@ namespace AppMVC.Data.Repository
     {
         public ProdutoRepository(MeuDbContext context) : base(context) { }
 
+
         public async Task<Produto> ObterProdutoFornecedor(Guid id)
         {
             return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor)
@@ -29,5 +30,7 @@ namespace AppMVC.Data.Repository
         {
             return await Buscar(p => p.FornecedorId == fornecedorId);
         }
+
+       
     }
 }
