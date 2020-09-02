@@ -19,7 +19,7 @@ namespace AppMVC.App.Extensions
             }           
             catch (Exception)     
             {
-                return new ValidationResult("Moeda em formato inválido");
+                return new ValidationResult("Moeda em formato inválido(XXX1)");
             }
 
             return ValidationResult.Success;
@@ -44,7 +44,8 @@ namespace AppMVC.App.Extensions
         }
         public override string GetErrorMessage(ModelValidationContextBase validationContext)
         {
-            return "Moeda em formato inválido";
+            //Tá caindo aqui sempre
+            return "Moeda em formato inválido(XXX2)";
         }
     }
     public class MoedaValidationAttributeAdapterProvider : IValidationAttributeAdapterProvider

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\ModelStateExtensions.cs" />
     <Compile Remove="Migrations\20200806034114_RegisterUserName.v2.cs" />
     <Compile Remove="Migrations\20200806034114_RegisterUserName.v2.Designer.cs" />
     <Compile Remove="Migrations\20200806054315_LoginChanges.cs" />

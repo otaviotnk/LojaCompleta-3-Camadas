@@ -46,7 +46,6 @@ namespace AppMVC.App.Controllers
         [Route("dados-do-produto/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
-
             var produtoViewModel = await ObterProduto(id);
 
             if (produtoViewModel == null)
@@ -60,7 +59,7 @@ namespace AppMVC.App.Controllers
         // GET: Produtos/Create
         [ClaimsAuthorize("Produto", "Adicionar")]
         [Route("novo-produto")]
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
         {
             var produtoViewModel = await PopularFornecedores(new ProdutoViewModel());
 

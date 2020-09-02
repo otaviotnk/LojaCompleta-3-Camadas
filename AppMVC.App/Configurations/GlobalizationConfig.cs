@@ -15,6 +15,8 @@ namespace AppMVC.App.Configurations
             var localizationOptions = new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(defaultCulture),
+
+                //Posso passar mais de uma cultura, se for o caso
                 SupportedCultures = new List<CultureInfo> { defaultCulture },
                 SupportedUICultures = new List<CultureInfo> { defaultCulture }
             };

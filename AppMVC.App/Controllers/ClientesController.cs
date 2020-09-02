@@ -5,10 +5,8 @@ using AppMVC.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppMVC.App.Controllers
@@ -84,8 +82,6 @@ namespace AppMVC.App.Controllers
             TempData["Sucesso"] = "Cliente adicionado com sucesso!";
 
             return RedirectToAction(nameof(Index));
-
-
         }
 
         // GET: Clientes/Edit/5
@@ -93,7 +89,6 @@ namespace AppMVC.App.Controllers
         [Route("editar-cliente/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
-
             var clienteViewModel = await ObterClienteEndereco(id);
 
             if (clienteViewModel == null)
@@ -160,7 +155,6 @@ namespace AppMVC.App.Controllers
         [Route("excluir-cliente/{id:guid}")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-
             var cliente = await ObterClienteEndereco(id);
 
             if (cliente == null)
@@ -179,7 +173,6 @@ namespace AppMVC.App.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
 
         [AllowAnonymous]
         [Route("obter-endereco-cliente/{id:guid}")]

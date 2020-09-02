@@ -6,10 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using Newtonsoft.Json;
-using AppMVC.Data.Migrations;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace AppMVC.App.Controllers
 {
@@ -34,7 +30,6 @@ namespace AppMVC.App.Controllers
             _clienteRepository = clienteRepository;
             _mapper = mapper;
         }
-
 
         // GET: Vendas
         public async Task<IActionResult> Index()
@@ -73,7 +68,7 @@ namespace AppMVC.App.Controllers
                 return View(vendaViewModel);
             }
 
-            var venda = _mapper.Map<Venda>(vendaViewModel);
+            var venda = _mapper.Map<Venda>(vendaViewModel);            
 
             var produto = await _produtoRepository.ObterPorId(venda.ProdutoId);
 
@@ -104,10 +99,11 @@ namespace AppMVC.App.Controllers
                 return View(vendaViewModel);
             }
 
-            TempData["Sucesso"] = "Venda cadastrada com sucesso!";
+            TempData["Sucesso"] = "Venda cadastrada com sucesso!";            
 
             return RedirectToAction(nameof(Index));
         }
+
         // GET: Vendas/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -176,8 +172,7 @@ namespace AppMVC.App.Controllers
             var produto = await _produtoRepository.ObterPorId(venda.ProdutoId);
             var vendaViewModel = _mapper.Map<Venda>(venda);
 
-
-            //Dá para mudar para um Switch/Case
+            //ToDo: Dá para mudar para um Switch/Case
             if (vendaViewModel.StatusVenda == StatusVenda.Criada)
             {
                 await _vendaService.Remover(id);
@@ -203,12 +198,7 @@ namespace AppMVC.App.Controllers
             TempData["Erro"] = "Venda Cancelada! A Venda não foi excluída pois já foi faturada!";
 
             return RedirectToAction(nameof(Delete));
-
-
-
         }
-
-
         private async Task<VendaViewModel> ObterVendaPorId(Guid id)
         {
             return _mapper.Map<VendaViewModel>(await _vendaRepository.ObterPorId(id));
@@ -225,8 +215,6 @@ namespace AppMVC.App.Controllers
             vendaViewModel.Clientes = _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos());
             vendaViewModel.Produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
             return vendaViewModel;
-
         }
-
     }
 }

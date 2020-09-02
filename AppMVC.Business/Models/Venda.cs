@@ -23,6 +23,9 @@ namespace AppMVC.Business.Models
         [NotMapped]
         public IEnumerable<Produto> Produtos { get; set; }
 
+        //Tentanto criar a bendita lista de produtos do pedido
+        //public virtual ICollection<VendaItem> VendaItems { get; set; }
+
 
     }
 }

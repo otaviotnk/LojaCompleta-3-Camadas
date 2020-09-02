@@ -24,7 +24,7 @@ namespace AppMVC.App.Configurations
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IVendaRepository, VendaRepository>();
 
-            services.AddSingleton<IValidationAttributeAdapterProvider, MoedaValidationAttributeAdapterProvider>();
+            services.AddSingleton<IValidationAttributeAdapterProvider, MoedaValidationAttributeAdapterProvider>();            
 
             //Add as Interfaces para os Services            
             services.AddScoped<INotificador, Notificador>();
