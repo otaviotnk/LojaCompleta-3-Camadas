@@ -1,3 +1,0 @@
-* linguist-vendored
-*.javascript linguist-detectable=false
-*.javascript linguist-vendored=false
