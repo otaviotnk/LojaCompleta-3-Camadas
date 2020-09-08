@@ -1,5 +1,4 @@
-﻿using AppMVC.App.Extensions;
-using AppMVC.App.Models;
+﻿using AppMVC.App.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
