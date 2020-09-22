@@ -9,6 +9,8 @@ namespace AppMVC.Business.Intefaces
     {
         //Deve receber uma lista de Id de cliente na tabela Venda
         Task<IEnumerable<Venda>> ObterVendasCliente(Guid clienteId);
+
+        //Não está sendo usado
         Task<Venda> ObterCarrinhoCliente(Guid id);
     }
 }

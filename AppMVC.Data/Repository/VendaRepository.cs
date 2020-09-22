@@ -19,6 +19,7 @@ namespace AppMVC.Data.Repository
 
         }
 
+        //Não Está sendo usado
         public async Task<Venda> ObterCarrinhoCliente(Guid id)
         {
             return await Db.Vendas.AsNoTracking()

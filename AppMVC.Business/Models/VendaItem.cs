@@ -4,11 +4,15 @@ using System.Text;
 
 namespace AppMVC.Business.Models
 {
-    public class VendaItem
+    public class VendaItem : Entity
     {
-        public Guid VendaId { get; set; }
-        public virtual Venda Venda { get; set; }
+        public int Quantidade { get; set; }
+
+        //---------------------------------\\       
         public Guid ProdutoId { get; set; }
         public virtual Produto Produto { get; set; }
+
+        public Guid VendaId { get; set; }
+        public virtual Venda Venda { get; set; }
     }
 }
