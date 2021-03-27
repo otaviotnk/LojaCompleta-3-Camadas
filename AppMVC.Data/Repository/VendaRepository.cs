@@ -1,4 +1,4 @@
-﻿using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AppMVC.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +19,6 @@ namespace AppMVC.Data.Repository
 
         }
 
-        //Não Está sendo usado
         public async Task<Venda> ObterCarrinhoCliente(Guid id)
         {
             return await Db.Vendas.AsNoTracking()

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 
 namespace AppMVC.Business.Notificacoes
 {
-    //O notificador implementa a Interface
     public class Notificador : INotificador
     {
         private readonly List<Notificacao> _notificacoes;
@@ -14,7 +13,6 @@ namespace AppMVC.Business.Notificacoes
             _notificacoes = new List<Notificacao>();
         }
 
-        //Manipula a notificação, adicionando ela(s) na pilha        
         public void Handle(Notificacao notificacao)
         {
             _notificacoes.Add(notificacao);
@@ -26,7 +24,6 @@ namespace AppMVC.Business.Notificacoes
             return _notificacoes;
         }
 
-        //VERIFICA SE EXISTE QUALQUER NOTIFICACAO
         public bool TemNotificacao()
         {
             return _notificacoes.Any();

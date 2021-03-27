@@ -1,10 +1,9 @@
-﻿using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AppMVC.Business.Notificacoes;
 using FluentValidation;
 using FluentValidation.Results;
 
-//Classe Base implementada pelas demais classes Service
 
 namespace AppMVC.Business.Services
 {
@@ -25,7 +24,6 @@ namespace AppMVC.Business.Services
             }
         }
 
-        //Cria uma instância de Notificação com a mensagem vinda do Notificar.cs        
         protected void Notificar(string mensagem)
         {
             _notificador.Handle(new Notificacao(mensagem));

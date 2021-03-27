@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-//Extensão para as páginas Razor, para formatação de CPF, CNPJ, permissões, etc...
-
 namespace AppMVC.App.Extensions
 {
     public static class RazorExtensions

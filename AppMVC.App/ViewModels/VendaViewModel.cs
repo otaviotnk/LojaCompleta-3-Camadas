@@ -1,5 +1,4 @@
-﻿using AppMVC.App.Extensions;
-using AppMVC.Business.Models;
+﻿using AppMVC.Business.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

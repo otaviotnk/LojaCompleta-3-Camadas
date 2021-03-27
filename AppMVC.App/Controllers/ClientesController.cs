@@ -1,6 +1,6 @@
 ﻿using AppMVC.App.Extensions;
 using AppMVC.App.ViewModels;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +14,6 @@ namespace AppMVC.App.Controllers
     [ClaimsAuthorize("Cliente", "")]
     public class ClientesController : BaseController
     {
-        //Injetando os Repositorios, Servicoes e Mapeamento
         private readonly IClienteRepository _clienteRepository;
         private readonly IClienteService _clienteService;
         private readonly IMapper _mapper;
@@ -124,7 +123,6 @@ namespace AppMVC.App.Controllers
 
             if (!OperacaoValida())
             {
-                //Para retornar todas as informacoes de endereco novamente 
                 return View(await ObterClienteEndereco(id));
             }
 
@@ -208,11 +206,9 @@ namespace AppMVC.App.Controllers
         [Route("atualizar-endereco-cliente/{id:guid}")]
         public async Task<IActionResult> AtualizarEndereco(ClienteViewModel clienteViewModel)
         {
-            //Retira do ModelState o Nome e Documento para fazer a validacao somente do endereco
             ModelState.Remove("Nome");
             ModelState.Remove("Documento");
             ModelState.Remove("DataNascimento");
-            //Ver quais outros atributos tem que remover
 
             if (ModelState.IsValid)
             {

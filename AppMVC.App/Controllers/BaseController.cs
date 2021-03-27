@@ -1,13 +1,10 @@
-﻿using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
-//Controler que serve como base para as demais controllers do projeto
 
 namespace AppMVC.App.Controllers
 {
     public abstract class BaseController : Controller
     {
-        //Injecao de dependencia do Notificador
         private readonly INotificador _notificador;
 
         protected BaseController(INotificador notificador)
@@ -15,7 +12,6 @@ namespace AppMVC.App.Controllers
             _notificador = notificador;
         }
 
-        //retorna True caso não tenha nenhuma notificacao
         protected bool OperacaoValida()
         {
             return !_notificador.TemNotificacao();

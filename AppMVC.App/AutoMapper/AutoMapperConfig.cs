@@ -2,8 +2,6 @@
 using AppMVC.App.ViewModels;
 using AppMVC.Business.Models;
 
-//MAPEAMENTO VIA AUTOMAPPER ENTRE AS ENTIDADES E AS VIEW MODELS
-
 namespace AppMVC.App.AutoMapper
 {
     public class AutoMapperConfig : Profile

@@ -1,6 +1,7 @@
 ﻿using AppMVC.App.ViewModels;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
+using AppMVC.Business.Enums;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -70,28 +71,6 @@ namespace AppMVC.App.Controllers
 
             var venda = _mapper.Map<Venda>(vendaViewModel);            
 
-            var produto = await _produtoRepository.ObterPorId(venda.ProdutoId);
-
-            if (venda.Quantidade > produto.Quantidade)
-            {
-                ModelState.AddModelError("", "A quantidade do pedido excede o estoque do produto");
-                vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
-                return View(vendaViewModel);
-            }
-
-            if (venda.Quantidade <= 0)
-            {
-                ModelState.AddModelError("", "A quantidade do produto deve ser maior que 0");
-                vendaViewModel = await PopularClientesProdutos(new VendaViewModel());
-                return View(vendaViewModel);
-            }
-
-            venda.StatusVenda = StatusVenda.Criada;
-            venda.TotalVenda = venda.Quantidade * produto.Valor;
-
-            produto.Quantidade += - venda.Quantidade;
-
-            await _produtoRepository.Atualizar(produto);
             await _vendaService.Adicionar(venda);
 
             if (!OperacaoValida())

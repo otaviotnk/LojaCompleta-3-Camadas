@@ -1,4 +1,4 @@
-﻿using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AppMVC.Business.Models.Validations;
 using System;
@@ -19,12 +19,10 @@ namespace AppMVC.Business.Services
 
         public async Task Adicionar(Venda venda)
         {
-            //Verifica se existe uma Venda cadastrada com o mesmo Id
             if (!ExecutarValidacao(new VendaValidation(), venda))
             {
                 return;
             }
-            //Ver se realmente é necessário
             if (_vendaRepository.Buscar(v => v.Id == venda.Id).Result.Any())
             {
                 Notificar("Esta venda já foi cadastrada");
@@ -42,8 +40,7 @@ namespace AppMVC.Business.Services
             }
 
             await _vendaRepository.Atualizar(venda);
-        }
-       
+        }     
 
         public async Task Remover(Guid id)
         {

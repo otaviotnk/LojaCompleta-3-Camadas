@@ -1,6 +1,6 @@
 ﻿using AppMVC.App.Extensions;
 using AppMVC.App.ViewModels;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +13,6 @@ namespace AppMVC.App.Controllers
 {
     public class FornecedoresController : BaseController
     {
-        //Injetando os Repositorios, Servicos e Mapeamento
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IFornecedorService _fornecedorService;
         private readonly IMapper _mapper;
@@ -52,7 +51,6 @@ namespace AppMVC.App.Controllers
         }
 
         // GET: Fornecedores/Create
-        //ClaimsAuthorize vem da classe de extensão
         [ClaimsAuthorize("Fornecedor", "Adicionar")]
         [Route("novo-fornecedor")]
         public IActionResult Create()
@@ -74,7 +72,6 @@ namespace AppMVC.App.Controllers
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
 
-            //Seta a data de cadastro do fornecedor como a data atual
             fornecedor.DataCadastro = DateTime.Now;           
             
             await _fornecedorService.Adicionar(fornecedor);
@@ -127,7 +124,6 @@ namespace AppMVC.App.Controllers
 
             if (!OperacaoValida())
             {
-                //Para retornar todas as informacoes novamente 
                 return View(await ObterFornecedorProdutosEndereco(id));
             }
 
@@ -210,7 +206,6 @@ namespace AppMVC.App.Controllers
         [HttpPost]
         public async Task<IActionResult> AtualizarEndereco(FornecedorViewModel fornecedorViewModel)
         {
-            //Retira do ModelState o Nome e Documento para fazer a validacao somente do endereco
             ModelState.Remove("Nome");
             ModelState.Remove("Documento");
 

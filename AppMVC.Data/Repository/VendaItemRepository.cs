@@ -1,4 +1,4 @@
-﻿using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AppMVC.Data.Context;
 using System;
@@ -15,6 +15,6 @@ namespace AppMVC.Data.Repository
         public async Task<IEnumerable<VendaItem>> ObterProdutosVenda(Guid vendaId)
         {
             return await Buscar(vi => vi.VendaId == vendaId);
-        }
+        }        
     }
 }

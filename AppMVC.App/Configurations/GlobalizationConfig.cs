@@ -3,7 +3,6 @@ using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 
-//Globalização para trazer os modelos de moeda e alertas padrões para pt-BR
 
 namespace AppMVC.App.Configurations
 {
@@ -16,7 +15,6 @@ namespace AppMVC.App.Configurations
             {
                 DefaultRequestCulture = new RequestCulture(defaultCulture),
 
-                //Posso passar mais de uma cultura, se for o caso
                 SupportedCultures = new List<CultureInfo> { defaultCulture },
                 SupportedUICultures = new List<CultureInfo> { defaultCulture }
             };

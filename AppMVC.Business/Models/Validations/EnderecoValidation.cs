@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
 
-//Validações feitas com o FluentValidation, para traduzir as mensagens de erro e personalizar
-
 namespace AppMVC.Business.Models.Validations
 {
     public class EnderecoValidation : AbstractValidator<Endereco>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AppMVC.Business.Models.Validations;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using AppMVC.Business.Enums;
 
 namespace AppMVC.Business.Models
 {
@@ -13,7 +14,6 @@ namespace AppMVC.Business.Models
         public Endereco Endereco { get; set; }
         public bool Ativo { get; set; }
 
-        //Relacionamento EF
         [NotMapped]
         public IEnumerable<Produto> Produtos { get; set; }
     }

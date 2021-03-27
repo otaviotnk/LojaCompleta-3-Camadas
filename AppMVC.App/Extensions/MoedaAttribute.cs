@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Localization;
 
-//Atributo para formatação da validação de moeda
-
 namespace AppMVC.App.Extensions
 {
     public class MoedaAttribute : ValidationAttribute
@@ -44,7 +42,6 @@ namespace AppMVC.App.Extensions
         }
         public override string GetErrorMessage(ModelValidationContextBase validationContext)
         {
-            //Tá caindo aqui sempre
             return "Moeda em formato inválido";
         }
     }

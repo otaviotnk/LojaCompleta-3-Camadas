@@ -1,4 +1,5 @@
 ﻿using System;
+using AppMVC.Business.Enums;
 
 namespace AppMVC.Business.Models
 {

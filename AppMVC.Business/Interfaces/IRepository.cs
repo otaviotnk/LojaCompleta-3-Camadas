@@ -4,9 +4,8 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AppMVC.Business.Models;
 
-namespace AppMVC.Business.Intefaces
+namespace AppMVC.Business.Interfaces
 {
-    //TEntity é uma entidade genérica que herda de Entity (Guid id)
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {
         Task Adicionar(TEntity entity);

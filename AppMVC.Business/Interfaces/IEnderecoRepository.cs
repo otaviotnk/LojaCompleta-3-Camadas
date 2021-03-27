@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using AppMVC.Business.Models;
 
-namespace AppMVC.Business.Intefaces
+namespace AppMVC.Business.Interfaces
 {
     public interface IEnderecoRepository : IRepository<Endereco>
     {

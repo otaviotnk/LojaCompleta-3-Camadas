@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
-//Componente de View, que é usado para preencher as Bags de notificação com mensagens de erro, sucesso, alertas, etc...
 
 namespace AppMVC.App.Extensions
 {

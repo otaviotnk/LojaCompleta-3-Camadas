@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Routing;
 
 namespace AppMVC.App.Extensions
 {
-    // O * diz que se aplica a todo o tipo de Tag e atribui o suppres caso usado e o usuário não tenha a claim necessária    
+    /// <summary>
+    /// O * diz que se aplica a todo o tipo de Tag e atribui o suppres caso usado e o usuário não tenha a claim necessária    
+    /// </summary>
+    
     [HtmlTargetElement("*", Attributes = "supress-by-claim-name")]
     [HtmlTargetElement("*", Attributes = "supress-by-claim-value")]
     public class ApagaElementoTagHelper : TagHelper
@@ -32,15 +35,18 @@ namespace AppMVC.App.Extensions
 
             var temAcesso = CustomAuthorization.ValidarClaimsUsuario(_contextAccessor.HttpContext, IdentityClaimName, IdentityClaimValue);
 
-            //Se o uruário tiver as Claims colocadas no atributo supress, retorna e mostra a Tag
             if (temAcesso) return;
 
-            //Caso contrário, suprime a Tag para não poder acessar o link
             output.SuppressOutput();
         }
     }
 
-    //O supress aqui é feito pela Action do Controller, fica mais fácil de implementar caso as CLaims usadas tenham o mesmo nome das Actions    
+
+    /// <summary>
+    /// O supress aqui é feito pela Action do Controller, fica mais fácil de implementar caso as CLaims usadas tenham o mesmo nome das Actions    
+    /// </summary>
+    
+
     [HtmlTargetElement("*", Attributes = "supress-by-action")]
     public class ApagaElementoByActionTagHelper : TagHelper
     {

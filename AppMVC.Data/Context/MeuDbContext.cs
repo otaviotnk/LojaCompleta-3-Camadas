@@ -24,7 +24,6 @@ namespace AppMVC.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Define um padrão para as colunas criadas e não mapeadas            
             foreach (var property in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetProperties()
                     .Where(p => p.ClrType == typeof(string))))
@@ -39,7 +38,6 @@ namespace AppMVC.Data.Context
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            //Define os campos com nome de DataCadastro com um DateTime.Now            
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
             {
                 if (entry.State == EntityState.Added)

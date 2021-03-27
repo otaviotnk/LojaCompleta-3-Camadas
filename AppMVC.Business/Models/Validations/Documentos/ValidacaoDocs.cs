@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-//Validação de documentos com base nos padrões brasileiros
-
 namespace AppMVC.Business.Models.Validations.Documentos
 {
     public class CpfValidacao
@@ -110,7 +108,7 @@ namespace AppMVC.Business.Models.Validations.Documentos
         private const int Modulo = 11;
         private readonly List<int> _multiplicadores = new List<int> { 2, 3, 4, 5, 6, 7, 8, 9 };
         private readonly IDictionary<int, string> _substituicoes = new Dictionary<int, string>();
-        private bool _complementarDoModulo = true;
+        private readonly bool _complementarDoModulo = true;
 
         public DigitoVerificador(string numero)
         {

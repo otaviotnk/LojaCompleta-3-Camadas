@@ -1,6 +1,6 @@
 ﻿using AppMVC.App.Extensions;
 using AppMVC.App.ViewModels;
-using AppMVC.Business.Intefaces;
+using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +15,6 @@ namespace AppMVC.App.Controllers
 {
     public class ProdutosController : BaseController
     {
-        //Injeção de dependencia dos repositorios, servicoes e mapeamento
         private readonly IProdutoRepository _produtoRepository;
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IProdutoService _produtoService;

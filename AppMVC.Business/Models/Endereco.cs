@@ -12,7 +12,6 @@ namespace AppMVC.Business.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
 
-        /* EF Relation */
         public Guid? FornecedorId { get; set; }
         public Fornecedor Fornecedor { get; set; }
 

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-//Configurações do MVC, Traduzindo as mensagens padrão de validações das Views
-
 namespace AppMVC.App.Configurations
 {
     public static class MvcConfig
@@ -23,7 +21,6 @@ namespace AppMVC.App.Configurations
                 o.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => "O campo deve ser numérico.");
                 o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "Este campo precisa ser preenchido.");
 
-                //Valida o token automaticamente em todos os requests
                 o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
 

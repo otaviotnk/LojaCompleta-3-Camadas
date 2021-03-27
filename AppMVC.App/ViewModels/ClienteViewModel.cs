@@ -1,4 +1,4 @@
-﻿using AppMVC.Business.Models;
+﻿using AppMVC.Business.Enums;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

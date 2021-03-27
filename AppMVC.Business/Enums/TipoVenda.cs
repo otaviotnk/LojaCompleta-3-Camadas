@@ -1,4 +1,4 @@
-﻿namespace AppMVC.Business.Models
+﻿namespace AppMVC.Business.Enums
 {
     public enum TipoVenda
     {        

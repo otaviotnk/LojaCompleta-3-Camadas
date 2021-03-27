@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-//Mapeamentos do Banco de Dados, pode ser substituido peloas DataAnnotations nas Models ou ViewModels
-
 namespace DevIO.Data.Mappings
 {
     public class EnderecoMapping : IEntityTypeConfiguration<Endereco>

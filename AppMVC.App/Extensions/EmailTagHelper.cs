@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-//Tag Helper para personalizar dimínio de e-mail
-
 namespace AppMVC.App.Extensions
 {
     public class EmailTagHelper : TagHelper

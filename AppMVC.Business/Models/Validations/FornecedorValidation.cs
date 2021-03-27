@@ -1,8 +1,6 @@
 ﻿using AppMVC.Business.Models.Validations.Documentos;
 using FluentValidation;
 
-//Validações feitas com o FluentValidation, para traduzir as mensagens de erro e personalizar
-
 namespace AppMVC.Business.Models.Validations
 {
     public class FornecedorValidation : AbstractValidator<Fornecedor>

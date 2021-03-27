@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using AppMVC.Business.Enums;
 
 namespace AppMVC.Business.Models
 {
@@ -11,7 +11,6 @@ namespace AppMVC.Business.Models
         public StatusVenda StatusVenda { get; set; }
         public string Observacoes { get; set; }
 
-        //Relacionamento EF
         public Guid ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 

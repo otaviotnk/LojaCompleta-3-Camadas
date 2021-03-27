@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-//Mapeamentos do Banco de Dados, pode ser substituido peloas DataAnnotations nas Models ou ViewModels
-
 namespace AppMVC.Data.Mappings
 {
     public class ClienteMapping : IEntityTypeConfiguration<Cliente>

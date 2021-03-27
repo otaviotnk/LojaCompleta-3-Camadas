@@ -9,13 +9,11 @@ namespace AppMVC.App.Extensions
 {
     public class CustomAuthorization
     {
-        //Verifica se o usuário está autenticado e se tem as Claims necessárias
         public static bool ValidarClaimsUsuario(HttpContext context, string claimName, string claimValue)
         {
             return context.User.Identity.IsAuthenticated &&
                    context.User.Claims.Any(c => c.Type == claimName && c.Value.Contains(claimValue));
         }
-
     }
 
     public class ClaimsAuthorizeAttribute : TypeFilterAttribute

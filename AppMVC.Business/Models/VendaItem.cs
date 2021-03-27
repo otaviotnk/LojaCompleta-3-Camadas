@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AppMVC.Business.Models
 {
@@ -8,7 +6,6 @@ namespace AppMVC.Business.Models
     {
         public int Quantidade { get; set; }
 
-        //---------------------------------\\       
         public Guid ProdutoId { get; set; }
         public virtual Produto Produto { get; set; }
 

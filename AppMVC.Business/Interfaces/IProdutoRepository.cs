@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppMVC.Business.Intefaces
+namespace AppMVC.Business.Interfaces
 {
     public interface IProdutoRepository : IRepository<Produto>
     {

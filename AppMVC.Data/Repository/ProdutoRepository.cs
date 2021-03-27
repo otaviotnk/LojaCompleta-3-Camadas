@@ -1,4 +1,4 @@
-﻿using AppMVC.Business.Intefaces;
+﻿using AppMVC.Business.Interfaces;
 using AppMVC.Business.Models;
 using AppMVC.Data.Context;
 using Microsoft.EntityFrameworkCore;
