@@ -1,4 +1,2 @@
-static/* linguist-vendored
-AppMVC.App/wwwroot/* linguist-vendored
-AppMVC.App/Views/* linguist-vendored
-AppMVC.App/Areas/Identity/Pages/* linguist-vendored
+* linguist-vendored
+*.cs linguist-vendored=false
