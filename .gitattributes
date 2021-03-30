@@ -1,3 +1,8 @@
 static/* linguist-vendored
 AppMVC.App/wwwroot/* linguist-vendored
 AppMVC.App/Views/* linguist-vendored
+
+*.cs linguist-detectable=true
+*.js linguist-vendored=false
+*.css linguist-vendored=false
+*.cshtml linguist-vendored=false
