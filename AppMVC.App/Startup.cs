@@ -44,7 +44,10 @@ namespace AppMVC.App
 
             services.AddMvcConfiguration();
 
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.ResolveDependencies();
+
             //Tem que tirar para não conflitar com o IdentityHostingStartup
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -58,8 +61,8 @@ namespace AppMVC.App
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseDeveloperExceptionPage();                
+                app.UseMigrationsEndPoint();                
             }
             else
             {

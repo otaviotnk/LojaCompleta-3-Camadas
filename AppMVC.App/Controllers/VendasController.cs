@@ -126,20 +126,20 @@ namespace AppMVC.App.Controllers
         }
 
         // GET: Vendas/Delete/5
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var vendaViewModel = await ObterVendaPorId(id);
+            var vendaViewModel = await ObterVendaPorId(id.Value);
             return View(vendaViewModel);
         }
 
         // POST: Vendas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid? id)
         {
 
             if (id == null)
@@ -147,14 +147,14 @@ namespace AppMVC.App.Controllers
                 return NotFound();
             }
 
-            var venda = await ObterVendaPorId(id);
+            var venda = await ObterVendaPorId(id.Value);
             var produto = await _produtoRepository.ObterPorId(venda.ProdutoId);
             var vendaViewModel = _mapper.Map<Venda>(venda);
 
             //ToDo: Dá para mudar para um Switch/Case
             if (vendaViewModel.StatusVenda == StatusVenda.Criada)
             {
-                await _vendaService.Remover(id);
+                await _vendaService.Remover(id.Value);
                 TempData["Sucesso"] = "Venda excluída com Sucesso!";
 
                 produto.Quantidade += venda.Quantidade;

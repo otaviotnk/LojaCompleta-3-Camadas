@@ -1,0 +1,79 @@
+﻿@model AppMVC.App.ViewModels.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Editar Fornecedor " + Model.Nome;
+}
+<div class="container">
+    <br />
+    <h1>@ViewData["Title"]</h1>
+
+    <hr />
+    <vc:Summary></vc:Summary>
+
+    <form asp-action="Edit">
+
+        <div class="row caixa-informacoes">
+            <div class="col-md-6">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documento" class="control-label"></label>
+                    <input asp-for="Documento" class="form-control" />
+                    <span asp-validation-for="Documento" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Genero" class="control-label"></label><br />
+                    <input type="radio" value="1" asp-for="Genero" checked /> Masculino<br />
+                    <input type="radio" value="2" asp-for="Genero" /> Feminino<br />
+                    <input type="radio" value="3" asp-for="Genero" /> Não Informado
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataNascimento" class="control-label"></label>
+                    <input type="date" asp-for="DataNascimento" class="form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+            </div>            
+        </div>
+    </form>
+
+    <div id="EnderecoTarget">
+        <partial name="_DetalhesEndereco" />
+    </div>
+</div>
+
+
+<div id="myModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            AjaxModal();
+        });
+    </script>
+}

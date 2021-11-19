@@ -1,4 +1,5 @@
-﻿using AppMVC.Business.Models.Validations.Documentos;
+﻿using AppMVC.Business.Enums;
+using AppMVC.Business.Models.Validations.Documentos;
 using FluentValidation;
 
 namespace AppMVC.Business.Models.Validations

@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-AppMVC.App-B682801E-0AF2-4BCE-B00B-645E137658AC</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\ModelStateExtensions.cs" />
+    <Compile Remove="Migrations\20200806034114_RegisterUserName.v2.cs" />
+    <Compile Remove="Migrations\20200806034114_RegisterUserName.v2.Designer.cs" />
+    <Compile Remove="Migrations\20200806054315_LoginChanges.cs" />
+    <Compile Remove="Migrations\20200806054315_LoginChanges.Designer.cs" />
+    <Compile Remove="Migrations\20200806055207_LoginChanges.v2.cs" />
+    <Compile Remove="Migrations\20200806055207_LoginChanges.v2.Designer.cs" />
+    <Compile Remove="Migrations\20200806055329_LoginChanges.v3.cs" />
+    <Compile Remove="Migrations\20200806055329_LoginChanges.v3.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="DocsBRValidator" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AutoMapper\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppMVC.Data\AppMVC.Data.csproj" />
+  </ItemGroup>
+
+</Project>

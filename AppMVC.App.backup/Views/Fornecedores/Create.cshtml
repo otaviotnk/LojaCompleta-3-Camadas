@@ -1,0 +1,66 @@
+﻿@model AppMVC.App.ViewModels.FornecedorViewModel
+
+@{
+    ViewData["Title"] = "Novo Fornecedor";
+}
+<div class="container">
+    <br />
+    <h1>@ViewData["Title"]</h1>
+
+    <hr />
+    <form asp-action="Create">
+
+        <div class="row caixa-informacoes">
+
+            @*Aqui aparecem as bag de erro"*@
+            <vc:Summary></vc:Summary>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documento" class="control-label"></label>
+                    <input asp-for="Documento" class="form-control" />
+                    <span asp-validation-for="Documento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TipoPessoa" class="control-label"></label><br />
+                    <input type="radio" value="1" asp-for="TipoPessoa" checked /> Pessoa Física<br />
+                    <input type="radio" value="2" asp-for="TipoPessoa" /> Pessoa Jurídica
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    </label>
+                </div>
+            </div>
+            <div class="row" style="margin:15px">
+                <h4>Endereço</h4>
+                <hr />
+                <div class="row" style="margin:15px">
+                    <partial name="_Endereco" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
+                </div>
+
+            </div>
+            
+        </div>
+    </form>
+
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        BuscaCep();
+    </script>
+}

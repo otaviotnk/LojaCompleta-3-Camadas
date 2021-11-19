@@ -1,0 +1,18 @@
+﻿@model IEnumerable<AppMVC.App.ViewModels.ProdutoViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Produtos";
+}
+<div class="container">
+    <br />
+    <vc:Summary></vc:Summary>
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+
+
+    <p supress-by-claim-name="Produto" supress-by-claim-value="Adicionar">
+        <a class="btn btn-info" asp-action="Create">Novo Produto</a>
+    </p>
+
+    <partial name="_ListaProdutos" />
+</div>

@@ -1,0 +1,53 @@
+﻿@model AppMVC.App.ViewModels.VendaViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da Venda";
+}
+
+<div class="container">
+    <br />
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <div>
+        <dl class="row caixa-informacoes">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalVenda)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.TotalVenda.ToString("C")
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataVenda)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataVenda)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TipoVenda)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TipoVenda)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StatusVenda)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StatusVenda)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Observacoes)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <div>
+            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+            <a class="btn btn-primary" asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</div>
+
+
